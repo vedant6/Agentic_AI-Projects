@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Vedant Aggarwal — AI Engineer & Data Analyst</title>
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+:root{
+  --bg:#080b12;
+  --surface:#0d1117;
+  --card:#111827;
+  --border:#1f2937;
+  --accent:#00d4ff;
+  --accent2:#7c3aed;
+  --accent3:#10b981;
+  --text:#f1f5f9;
+  --muted:#94a3b8;
+  --mono:'Space Mono',monospace;
+  --sans:'Inter',sans-serif;
+}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.6;overflow-x:hidden;}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(8,11,18,0.85);backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 2rem;}
+.nav-inner{max-width:1100px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;height:60px;}
+.nav-logo{font-family:var(--mono);font-size:14px;color:var(--accent);letter-spacing:0.05em;}
+.nav-links{display:flex;gap:2rem;}
+.nav-links a{font-size:13px;color:var(--muted);text-decoration:none;transition:color 0.2s;}
+.nav-links a:hover{color:var(--accent);}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:80px 2rem 4rem;position:relative;overflow:hidden;}
+.hero::before{
+  content:'';position:absolute;top:-200px;left:-200px;width:600px;height:600px;
+  background:radial-gradient(circle,rgba(0,212,255,0.08) 0%,transparent 70%);
+  pointer-events:none;
+}
+.hero::after{
+  content:'';position:absolute;bottom:-200px;right:-200px;width:500px;height:500px;
+  background:radial-gradient(circle,rgba(124,58,237,0.08) 0%,transparent 70%);
+  pointer-events:none;
+}
+.hero-inner{max-width:900px;text-align:center;position:relative;z-index:1;}
+.hero-tag{display:inline-block;font-family:var(--mono);font-size:11px;color:var(--accent);border:1px solid rgba(0,212,255,0.3);padding:4px 14px;border-radius:20px;margin-bottom:1.5rem;letter-spacing:0.1em;}
+.hero h1{font-size:clamp(2.5rem,6vw,5rem);font-weight:600;line-height:1.1;margin-bottom:1rem;}
+.hero h1 span{color:var(--accent);}
+.hero-sub{font-size:1.1rem;color:var(--muted);max-width:600px;margin:0 auto 2rem;}
+.hero-btns{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
+.btn{padding:12px 28px;border-radius:8px;font-size:14px;font-weight:500;text-decoration:none;transition:all 0.2s;cursor:pointer;border:none;font-family:var(--sans);}
+.btn-primary{background:var(--accent);color:#080b12;}
+.btn-primary:hover{background:#33dcff;transform:translateY(-1px);}
+.btn-outline{background:transparent;color:var(--text);border:1px solid var(--border);}
+.btn-outline:hover{border-color:var(--accent);color:var(--accent);}
+.hero-stats{display:flex;gap:3rem;justify-content:center;margin-top:3rem;flex-wrap:wrap;}
+.stat{text-align:center;}
+.stat-num{font-family:var(--mono);font-size:2rem;font-weight:700;color:var(--accent);}
+.stat-label{font-size:12px;color:var(--muted);margin-top:4px;}
+
+/* SECTIONS */
+section{padding:5rem 2rem;}
+.section-inner{max-width:1100px;margin:0 auto;}
+.section-tag{font-family:var(--mono);font-size:11px;color:var(--accent);letter-spacing:0.1em;text-transform:uppercase;margin-bottom:0.5rem;}
+.section-title{font-size:2rem;font-weight:600;margin-bottom:1rem;}
+.section-sub{color:var(--muted);max-width:600px;margin-bottom:3rem;}
+
+/* SKILLS */
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;}
+.skill-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.5rem;transition:border-color 0.2s;}
+.skill-card:hover{border-color:var(--accent);}
+.skill-icon{font-size:1.5rem;margin-bottom:0.75rem;}
+.skill-title{font-weight:600;margin-bottom:0.5rem;}
+.skill-tags{display:flex;flex-wrap:wrap;gap:6px;margin-top:0.75rem;}
+.tag{font-size:11px;padding:3px 10px;border-radius:4px;background:rgba(0,212,255,0.08);color:var(--accent);border:1px solid rgba(0,212,255,0.2);}
+.tag.purple{background:rgba(124,58,237,0.08);color:#a78bfa;border-color:rgba(124,58,237,0.2);}
+.tag.green{background:rgba(16,185,129,0.08);color:#34d399;border-color:rgba(16,185,129,0.2);}
+
+/* PROJECTS */
+.projects-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:1.5rem;}
+.project-card{background:var(--card);border:1px solid var(--border);border-radius:12px;overflow:hidden;transition:transform 0.2s,border-color 0.2s;}
+.project-card:hover{transform:translateY(-4px);border-color:var(--accent);}
+.project-header{padding:1.5rem 1.5rem 0;}
+.project-num{font-family:var(--mono);font-size:11px;color:var(--muted);margin-bottom:0.5rem;}
+.project-title{font-size:1.1rem;font-weight:600;margin-bottom:0.5rem;}
+.project-desc{font-size:13px;color:var(--muted);line-height:1.6;}
+.project-body{padding:1.25rem 1.5rem;}
+.project-stack{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:1rem;}
+.project-links{display:flex;gap:0.75rem;}
+.project-link{font-size:12px;padding:6px 14px;border-radius:6px;text-decoration:none;font-weight:500;transition:all 0.2s;}
+.project-link.live{background:var(--accent);color:#080b12;}
+.project-link.live:hover{background:#33dcff;}
+.project-link.code{background:transparent;color:var(--muted);border:1px solid var(--border);}
+.project-link.code:hover{border-color:var(--accent);color:var(--accent);}
+.project-badge{display:inline-block;font-size:10px;padding:2px 8px;border-radius:4px;margin-bottom:0.75rem;font-family:var(--mono);}
+.badge-rag{background:rgba(0,212,255,0.1);color:var(--accent);border:1px solid rgba(0,212,255,0.2);}
+.badge-agent{background:rgba(124,58,237,0.1);color:#a78bfa;border:1px solid rgba(124,58,237,0.2);}
+.badge-multi{background:rgba(16,185,129,0.1);color:#34d399;border:1px solid rgba(16,185,129,0.2);}
+
+/* HOW IT WORKS */
+.how-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.5rem;}
+.how-step{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.5rem;position:relative;}
+.how-num{font-family:var(--mono);font-size:2.5rem;font-weight:700;color:var(--border);position:absolute;top:1rem;right:1.25rem;line-height:1;}
+.how-icon{font-size:1.5rem;margin-bottom:0.75rem;}
+.how-title{font-weight:600;margin-bottom:0.5rem;font-size:0.95rem;}
+.how-desc{font-size:13px;color:var(--muted);}
+
+/* EXPERIENCE */
+.exp-list{display:flex;flex-direction:column;gap:1.5rem;}
+.exp-card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:1.5rem;display:grid;grid-template-columns:auto 1fr;gap:1.25rem;align-items:start;}
+.exp-dot{width:10px;height:10px;border-radius:50%;margin-top:6px;flex-shrink:0;}
+.exp-dot.blue{background:var(--accent);}
+.exp-dot.purple{background:#7c3aed;}
+.exp-dot.green{background:#10b981;}
+.exp-role{font-weight:600;margin-bottom:2px;}
+.exp-company{font-size:13px;color:var(--accent);margin-bottom:4px;}
+.exp-date{font-size:12px;color:var(--muted);font-family:var(--mono);}
+.exp-bullets{margin-top:0.75rem;display:flex;flex-direction:column;gap:4px;}
+.exp-bullet{font-size:13px;color:var(--muted);padding-left:1rem;position:relative;}
+.exp-bullet::before{content:'→';position:absolute;left:0;color:var(--accent);font-size:11px;}
+
+/* CERTS */
+.certs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;}
+.cert-card{background:var(--card);border:1px solid var(--border);border-radius:10px;padding:1.25rem;display:flex;gap:1rem;align-items:flex-start;}
+.cert-icon{font-size:1.5rem;flex-shrink:0;}
+.cert-name{font-size:13px;font-weight:500;margin-bottom:2px;}
+.cert-by{font-size:12px;color:var(--muted);}
+
+/* CONTACT */
+.contact-inner{text-align:center;}
+.contact-links{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;margin-top:2rem;}
+.contact-link{display:flex;align-items:center;gap:8px;padding:12px 24px;border-radius:8px;background:var(--card);border:1px solid var(--border);color:var(--text);text-decoration:none;font-size:13px;transition:all 0.2s;}
+.contact-link:hover{border-color:var(--accent);color:var(--accent);}
+
+/* FOOTER */
+footer{text-align:center;padding:2rem;border-top:1px solid var(--border);color:var(--muted);font-size:13px;font-family:var(--mono);}
+
+/* TERMINAL ANIMATION */
+.terminal{background:#0d1117;border:1px solid var(--border);border-radius:10px;padding:1.5rem;font-family:var(--mono);font-size:13px;margin:2rem auto;max-width:600px;text-align:left;}
+.terminal-header{display:flex;gap:6px;margin-bottom:1rem;}
+.t-dot{width:12px;height:12px;border-radius:50%;}
+.t-red{background:#ff5f57;}
+.t-yellow{background:#febc2e;}
+.t-green{background:#28c840;}
+.terminal-line{color:#94a3b8;margin-bottom:4px;}
+.terminal-line .cmd{color:#00d4ff;}
+.terminal-line .out{color:#10b981;}
+.terminal-line .comment{color:#4b5563;}
+
+/* SCROLL REVEAL */
+.reveal{opacity:0;transform:translateY(20px);transition:opacity 0.5s,transform 0.5s;}
+.reveal.visible{opacity:1;transform:none;}
+
+/* GRID LINE BG */
+.hero::before,.hero::after{animation:pulse 4s ease-in-out infinite alternate;}
+@keyframes pulse{0%{opacity:0.5;}100%{opacity:1;}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-logo">vedant.aggarwal()</div>
+    <div class="nav-links">
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-tag">AVAILABLE FOR OPPORTUNITIES</div>
+    <h1>Vedant <span>Aggarwal</span></h1>
+    <h1 style="font-size:clamp(1.5rem,4vw,3rem);color:var(--muted);font-weight:400;margin-bottom:1.5rem;">AI Engineer · Data Analyst · Builder</h1>
+    <p class="hero-sub">Building intelligent systems with LangChain, RAG pipelines, and Agentic AI. Turning data into decisions and ideas into working products.</p>
+    <div class="hero-btns">
+      <a href="#projects" class="btn btn-primary">View Projects</a>
+      <a href="https://github.com/vedant6/Agentic_AI-Projects" target="_blank" class="btn btn-outline">GitHub</a>
+      <a href="https://linkedin.com/in/vedant-aggarwal" target="_blank" class="btn btn-outline">LinkedIn</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat"><div class="stat-num">3</div><div class="stat-label">AI Projects Built</div></div>
+      <div class="stat"><div class="stat-num">27+</div><div class="stat-label">Students Trained</div></div>
+      <div class="stat"><div class="stat-num">5+</div><div class="stat-label">Certifications</div></div>
+      <div class="stat"><div class="stat-num">10+</div><div class="stat-label">Months DA Experience</div></div>
+    </div>
+
+    <div class="terminal">
+      <div class="terminal-header">
+        <div class="t-dot t-red"></div>
+        <div class="t-dot t-yellow"></div>
+        <div class="t-dot t-green"></div>
+      </div>
+      <div class="terminal-line"><span class="comment"># Vedant's AI Stack</span></div>
+      <div class="terminal-line"><span class="cmd">from</span> langchain_groq <span class="cmd">import</span> ChatGroq</div>
+      <div class="terminal-line"><span class="cmd">from</span> langchain_chroma <span class="cmd">import</span> Chroma</div>
+      <div class="terminal-line"><span class="cmd">from</span> langgraph.prebuilt <span class="cmd">import</span> create_react_agent</div>
+      <div class="terminal-line" style="margin-top:8px;"><span class="out">✓ RAG Pipeline initialized</span></div>
+      <div class="terminal-line"><span class="out">✓ Agentic AI ready</span></div>
+      <div class="terminal-line"><span class="out">✓ Multi-Agent system online</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" style="background:var(--surface);">
+  <div class="section-inner reveal">
+    <div class="section-tag">WHAT I BUILT</div>
+    <h2 class="section-title">AI Projects</h2>
+    <p class="section-sub">Three production-ready AI systems built with LangChain, LangGraph, ChromaDB and Groq LLaMA 3.3 70B.</p>
+
+    <div class="projects-grid">
+
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-num">PROJECT 01</div>
+          <div class="project-badge badge-rag">RAG PIPELINE</div>
+          <div class="project-title">🔍 Intelligent Document Q&A</div>
+          <p class="project-desc">Retrieval Augmented Generation system that prevents LLM hallucination by grounding responses in real documents using semantic search.</p>
+        </div>
+        <div class="project-body">
+          <div class="project-stack">
+            <span class="tag">LangChain</span>
+            <span class="tag">ChromaDB</span>
+            <span class="tag">HuggingFace</span>
+            <span class="tag">Groq LLaMA</span>
+            <span class="tag">Streamlit</span>
+          </div>
+          <div style="font-size:12px;color:var(--muted);margin-bottom:1rem;line-height:1.7;">
+            Documents → Chunked → Vectorized → Stored in ChromaDB → Semantic search → LLM answers from context only
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/vedant6/Agentic_AI-Projects/blob/main/app.py" target="_blank" class="project-link code">View Code</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-num">PROJECT 02</div>
+          <div class="project-badge badge-agent">AGENTIC AI</div>
+          <div class="project-title">🤖 ReAct Pattern Agent</div>
+          <p class="project-desc">Autonomous AI agent using the ReAct pattern — Reasoning and Acting in loops — with custom tool calling capabilities.</p>
+        </div>
+        <div class="project-body">
+          <div class="project-stack">
+            <span class="tag purple">LangGraph</span>
+            <span class="tag purple">ReAct Pattern</span>
+            <span class="tag purple">Tool Calling</span>
+            <span class="tag purple">Groq LLaMA</span>
+          </div>
+          <div style="font-size:12px;color:var(--muted);margin-bottom:1rem;line-height:1.7;">
+            Tools: Calculator · Weather · Data Analyzer · Company Search. Agent decides which tool autonomously.
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/vedant6/Agentic_AI-Projects/blob/main/agent_project.py" target="_blank" class="project-link code">View Code</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-card">
+        <div class="project-header">
+          <div class="project-num">PROJECT 03</div>
+          <div class="project-badge badge-multi">MULTI-AGENT</div>
+          <div class="project-title">🏗️ Multi-Agent Orchestration</div>
+          <p class="project-desc">4 specialized agents coordinating autonomously — Orchestrator, Researcher, Analyst, and Writer — to complete complex tasks.</p>
+        </div>
+        <div class="project-body">
+          <div class="project-stack">
+            <span class="tag green">LangChain</span>
+            <span class="tag green">Multi-Agent</span>
+            <span class="tag green">Orchestration</span>
+            <span class="tag green">Groq LLaMA</span>
+          </div>
+          <div style="font-size:12px;color:var(--muted);margin-bottom:1rem;line-height:1.7;">
+            Orchestrator → Researcher → Analyst → Writer. Each agent specializes, coordinates, and passes results forward.
+          </div>
+          <div class="project-links">
+            <a href="https://github.com/vedant6/Agentic_AI-Projects/blob/main/multi_agent.py" target="_blank" class="project-link code">View Code</a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- HOW RAG WORKS -->
+<section id="how">
+  <div class="section-inner reveal">
+    <div class="section-tag">UNDER THE HOOD</div>
+    <h2 class="section-title">How RAG Works</h2>
+    <p class="section-sub">The pipeline that makes AI answer from YOUR data — not hallucinate.</p>
+    <div class="how-grid">
+      <div class="how-step">
+        <div class="how-num">01</div>
+        <div class="how-icon">📄</div>
+        <div class="how-title">Document Ingestion</div>
+        <div class="how-desc">Documents split into 200-character chunks using RecursiveCharacterTextSplitter.</div>
+      </div>
+      <div class="how-step">
+        <div class="how-num">02</div>
+        <div class="how-icon">🔢</div>
+        <div class="how-title">Vectorization</div>
+        <div class="how-desc">Each chunk converted to numerical vectors using HuggingFace all-MiniLM-L6-v2 embeddings.</div>
+      </div>
+      <div class="how-step">
+        <div class="how-num">03</div>
+        <div class="how-icon">💾</div>
+        <div class="how-title">Vector Storage</div>
+        <div class="how-desc">Vectors stored in ChromaDB — a specialized database for semantic similarity search.</div>
+      </div>
+      <div class="how-step">
+        <div class="how-num">04</div>
+        <div class="how-icon">🔍</div>
+        <div class="how-title">Semantic Retrieval</div>
+        <div class="how-desc">User question vectorized, top-2 most similar chunks retrieved from ChromaDB.</div>
+      </div>
+      <div class="how-step">
+        <div class="how-num">05</div>
+        <div class="how-icon">🤖</div>
+        <div class="how-title">Grounded Generation</div>
+        <div class="how-desc">Groq LLaMA 3.3 70B generates answer ONLY from retrieved chunks. Zero hallucination.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience" style="background:var(--surface);">
+  <div class="section-inner reveal">
+    <div class="section-tag">CAREER</div>
+    <h2 class="section-title">Experience</h2>
+    <div class="exp-list">
+
+      <div class="exp-card">
+        <div class="exp-dot blue"></div>
+        <div>
+          <div class="exp-role">Advisor I — Customer Operations</div>
+          <div class="exp-company">Concentrix Technologies India Pvt. Ltd. · Xfinity US</div>
+          <div class="exp-date">May 2026 – Present · Gurgaon</div>
+          <div class="exp-bullets">
+            <div class="exp-bullet">Fortune 500 MNC environment — global client operations</div>
+            <div class="exp-bullet">CRM proficiency and metric-driven performance delivery</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="exp-card">
+        <div class="exp-dot purple"></div>
+        <div>
+          <div class="exp-role">Data Analytics Trainer & Operations Lead</div>
+          <div class="exp-company">Coding Dojo Academy (Founded)</div>
+          <div class="exp-date">January 2025 – Present · Delhi</div>
+          <div class="exp-bullets">
+            <div class="exp-bullet">Trained 27+ students in SQL, Power BI, Tableau, Python — 90%+ scores</div>
+            <div class="exp-bullet">Built codingdojoacademy.com with Next.js — increased leads by 21%</div>
+            <div class="exp-bullet">Operational reporting and analytics for business decisions</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="exp-card">
+        <div class="exp-dot green"></div>
+        <div>
+          <div class="exp-role">Data Analyst Intern</div>
+          <div class="exp-company">Raaj Digital Network Pvt. Ltd.</div>
+          <div class="exp-date">March 2021 – December 2021 · Delhi</div>
+          <div class="exp-bullets">
+            <div class="exp-bullet">Automated Power BI dashboards — reduced reporting time by 33%</div>
+            <div class="exp-bullet">Built ETL/ELT pipelines and SQL databases for cross-functional teams</div>
+            <div class="exp-bullet">Analyzed datasets and presented insights to stakeholders</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-inner reveal">
+    <div class="section-tag">TECHNICAL SKILLS</div>
+    <h2 class="section-title">Skills & Tools</h2>
+    <div class="skills-grid">
+
+      <div class="skill-card">
+        <div class="skill-icon">🧠</div>
+        <div class="skill-title">AI & Agentic Systems</div>
+        <div style="font-size:13px;color:var(--muted);">RAG Pipelines · LangChain · LangGraph · ReAct Pattern · Multi-Agent Orchestration · Prompt Engineering</div>
+        <div class="skill-tags">
+          <span class="tag">LangChain</span>
+          <span class="tag">LangGraph</span>
+          <span class="tag">RAG</span>
+          <span class="tag">Groq</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-icon">📊</div>
+        <div class="skill-title">Data & BI</div>
+        <div style="font-size:13px;color:var(--muted);">Power BI · Tableau · SQL · ETL/ELT Pipelines · Data Warehousing · Looker Studio · Data Modeling</div>
+        <div class="skill-tags">
+          <span class="tag purple">Power BI</span>
+          <span class="tag purple">Tableau</span>
+          <span class="tag purple">SQL</span>
+          <span class="tag purple">ETL</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-icon">💻</div>
+        <div class="skill-title">Programming</div>
+        <div style="font-size:13px;color:var(--muted);">Python · JavaScript · Java · C/C++ · HTML/CSS · Next.js · Flutter · Firebase</div>
+        <div class="skill-tags">
+          <span class="tag green">Python</span>
+          <span class="tag green">JavaScript</span>
+          <span class="tag green">Next.js</span>
+          <span class="tag green">Flask</span>
+        </div>
+      </div>
+
+      <div class="skill-card">
+        <div class="skill-icon">🗄️</div>
+        <div class="skill-title">Databases</div>
+        <div style="font-size:13px;color:var(--muted);">MySQL · MSSQL · Oracle · NoSQL · ChromaDB · SQLite · Vector Databases</div>
+        <div class="skill-tags">
+          <span class="tag">MySQL</span>
+          <span class="tag">MSSQL</span>
+          <span class="tag">ChromaDB</span>
+          <span class="tag">Oracle</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section style="background:var(--surface);">
+  <div class="section-inner reveal">
+    <div class="section-tag">CREDENTIALS</div>
+    <h2 class="section-title">Certifications</h2>
+    <div class="certs-grid">
+      <div class="cert-card">
+        <div class="cert-icon">🏛️</div>
+        <div><div class="cert-name">Post Graduate Executive Certification in Data Science & AI</div><div class="cert-by">IIT Roorkee & Intellipaat · 2026 (Ongoing)</div></div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon">🔵</div>
+        <div><div class="cert-name">IBM RAG and Agentic AI Professional Certificate</div><div class="cert-by">IBM · Coursera · 2026</div></div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon">🟡</div>
+        <div><div class="cert-name">Google Data Analytics Professional Certificate</div><div class="cert-by">Google · Coursera</div></div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon">🟦</div>
+        <div><div class="cert-name">Power BI Data Analyst Associate</div><div class="cert-by">Microsoft</div></div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon">📊</div>
+        <div><div class="cert-name">Tableau Desktop Specialist</div><div class="cert-by">University of California, Davis</div></div>
+      </div>
+      <div class="cert-card">
+        <div class="cert-icon">🐍</div>
+        <div><div class="cert-name">Python for Everybody</div><div class="cert-by">University of Michigan</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner reveal">
+    <div class="contact-inner">
+      <div class="section-tag" style="display:inline-block;">GET IN TOUCH</div>
+      <h2 class="section-title" style="margin-top:0.5rem;">Let's Connect</h2>
+      <p style="color:var(--muted);max-width:500px;margin:0 auto;">Open to Data Analyst, AI Engineer, Business Analyst and MIS roles across India and abroad.</p>
+      <div class="contact-links">
+        <a href="mailto:vedant.aggarwal@outlook.com" class="contact-link">📧 vedant.aggarwal@outlook.com</a>
+        <a href="https://linkedin.com/in/vedant-aggarwal" target="_blank" class="contact-link">💼 LinkedIn</a>
+        <a href="https://github.com/vedant6" target="_blank" class="contact-link">💻 GitHub</a>
+        <a href="https://codingdojoacademy.com" target="_blank" class="contact-link">🌐 Coding Dojo Academy</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div style="font-family:var(--mono);">vedant.aggarwal() · Built with HTML · CSS · JavaScript · 2026</div>
+</footer>
+
+<script>
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if(e.isIntersecting) e.target.classList.add('visible');
+  });
+}, {threshold: 0.1});
+reveals.forEach(r => observer.observe(r));
+</script>
+</body>
+</html>
